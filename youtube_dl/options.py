@@ -41,7 +41,8 @@ def _hide_login_info(opts):
 def parseOpts(overrideArguments=None):
     def _readOptions(filename_bytes, default=[]):
         try:
-            optionf = open(filename_bytes)
+            # FIXME: UnicodeDecodeError: 'gbk' codec can't decode byte 0xb0 in position 112: illegal multibyte sequence
+            optionf = open(filename_bytes, 'r', encoding='UTF-8')
         except IOError:
             return default  # silently skip if file is not present
         try:
